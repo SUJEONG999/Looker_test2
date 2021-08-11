@@ -150,7 +150,7 @@ view: sales {
     group_label: "Choose depth"
     link: {
       label : "url-test"
-      url:"https://megazonepartner.cloud.looker.com/dashboards-next/87"
+      url:"https://megazonepartner.cloud.looker.com/looks/121"
     }
     type: string
     sql:
