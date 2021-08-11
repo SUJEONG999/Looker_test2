@@ -14,4 +14,16 @@ explore: d_category {}
 
 explore: d_item {}
 
-explore: sales {}
+explore: sales {
+  join: d_item_1 {
+    from: d_item
+    relationship: many_to_one
+    sql_on: ${d_item_1.item_number} = ${sales.item_number};;
+  }
+
+  join: d_category_1 {
+    from: d_category
+    relationship: many_to_one
+    sql_on: ${d_category_1.category} = ${sales.category};;
+  }
+}
