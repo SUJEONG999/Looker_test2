@@ -100,4 +100,63 @@ view: sales {
     type: count
     drill_fields: []
   }
+
+  #################
+
+  measure: total_sale_dollars {
+    label: "총 판매 금액"
+    type: number
+    sql: sum(${TABLE}.sale_dollars) ;;
+  }
+
+  measure: total_bottles_sold {
+    label: "총 판매량"
+    type: number
+    sql: sum(${TABLE}.bottles_sold) ;;
+  }
+
+  measure: avg_sale_dollars {
+    label: "평균 판매 금액"
+    type: number
+    sql: sum(${TABLE}.sale_dollars) / sum(${TABLE}.bottles_sold);;
+  }
+
+  measure: total_state_bottle_cost {
+    type: number
+    sql: sum(${TABLE}.state_bottle_cost) ;;
+  }
+
+  measure: total_state_bottle_retail {
+    type: number
+    sql: sum(${TABLE}.state_bottle_retail) ;;
+  }
+
+  # measure: profit {
+  #   label: "이익"
+  #   type: number
+  #   sql: (sum(${TABLE}.state_bottle_retail) – sum(${TABLE}.state_bottle_cost)) * sum(${TABLE}.bottles_sold);;
+  # }
+  ##################### depth #######################################################
+
+  parameter: p_depth {
+    label: "DEPTH"
+    type: string
+    allowed_value: {label: "category_name" value: "category_name" }
+    allowed_value: {label: "item_description" value: "item_description" }
+    group_label: "필터용"
+  }
+
+  dimension: depth {
+    group_label: "Choose depth"
+    type: string
+    sql:
+    {% if p_depth._parameter_value == "'category_name'"%}
+      ${d_category_1.category_name}
+    {% elsif p_depth._parameter_value == "'item_description'"%}
+      ${d_item_1.item_description}
+    {%endif%}
+    ;;
+  }
+
+
 }
