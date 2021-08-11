@@ -148,6 +148,10 @@ view: sales {
 
   dimension: depth {
     group_label: "Choose depth"
+    link: {
+      label : "url-test"
+      url:"https://megazonepartner.cloud.looker.com/dashboards-next/87"
+    }
     type: string
     sql:
     {% if p_depth._parameter_value == "'category_name'"%}
